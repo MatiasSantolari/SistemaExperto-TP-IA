@@ -1,69 +1,129 @@
 % TRANSPORTE
-% ciudad, tipo_transporte, precio
+% ciudad, tipo_transporte, precio en dolares
 
-transporte(buenos_aires, autobus, 15). % precio en dólares
+% Transporte a Buenos Aires
+transporte(buenos_aires, colectivo, 15).
 transporte(buenos_aires, avion, 20).
+transporte(buenos_aires, automovil, 12).
+transporte(buenos_aires, tren, 10).
 
-transporte(mendoza, autobus, 35).
+% Transporte a Mendoza
+transporte(mendoza, colectivo, 35).
 transporte(mendoza, avion, 45).
+transporte(mendoza, automovil, 40).
 
-transporte(cordoba, autobus, 20).
+% Transporte a Córdoba
+transporte(cordoba, colectivo, 20).
 transporte(cordoba, avion, 30).
+transporte(cordoba, automovil, 25).
+transporte(cordoba, tren, 18).
 
+% Transporte a Bariloche
 transporte(bariloche, avion, 60).
-transporte(bariloche, autobus, 40).
+transporte(bariloche, colectivo, 40).
+transporte(bariloche, automovil, 50).
 
+% Transporte a Salta
 transporte(salta, avion, 40).
-transporte(salta, autobus, 28).
+transporte(salta, colectivo, 28).
+transporte(salta, automovil, 35).
 
+% Transporte a Iguazú
 transporte(iguazu, avion, 45).
-transporte(iguazu, autobus, 32).
+transporte(iguazu, colectivo, 32).
+transporte(iguazu, automovil, 38).
 
+% Transporte a San Martín de los Andes
 transporte(san_martin_de_los_andes, avion, 70).
-transporte(san_martin_de_los_andes, autobus, 50).
+transporte(san_martin_de_los_andes, colectivo, 50).
+transporte(san_martin_de_los_andes, automovil, 55).
 
+% Transporte a Ushuaia
 transporte(ushuaia, avion, 90).
-transporte(ushuaia, autobus, 70).
+transporte(ushuaia, colectivo, 70).
+transporte(ushuaia, automovil, 75).
 
+% Transporte a El Calafate
 transporte(el_calafate, avion, 80).
-transporte(el_calafate, autobus, 60).
+transporte(el_calafate, colectivo, 60).
+transporte(el_calafate, automovil, 70).
 
-transporte(tilcara, avion, 50).
-transporte(tilcara, autobus, 35).
+% Transporte a Tilcara
+transporte(tilcara, colectivo, 35).
+transporte(tilcara, automovil, 40).
 
-transporte(cafayate, avion, 55).
-transporte(cafayate, autobus, 37).
+% Transporte a Cafayate
+transporte(cafayate, colectivo, 37).
+transporte(cafayate, automovil, 42).
 
-transporte(tucuman, autobus, 29).
+% Transporte a Tucumán
+transporte(tucuman, colectivo, 29).
 transporte(tucuman, avion, 40).
+transporte(tucuman, automovil, 35).
+transporte(tucuman, tren, 25).
 
-transporte(mar_del_plata, autobus, 25).
+% Transporte a Mar del Plata
+transporte(mar_del_plata, colectivo, 25).
 transporte(mar_del_plata, avion, 30).
+transporte(mar_del_plata, automovil, 22).
+transporte(mar_del_plata, tren, 20).
 
-transporte(villa_gesell, autobus, 20).
-transporte(villa_gesell, avion, 25).
+% Transporte a Villa Gesell
+transporte(villa_gesell, colectivo, 20).
+transporte(villa_gesell, automovil, 18).
 
-transporte(pinamar, autobus, 22).
-transporte(pinamar, avion, 27).
+% Transporte a Pinamar
+transporte(pinamar, colectivo, 22).
+transporte(pinamar, automovil, 20).
 
-transporte(claromeco, autobus, 23).
-transporte(claromeco, avion, 28).
+% Transporte a Claromecó
+transporte(claromeco, colectivo, 23).
+transporte(claromeco, automovil, 22).
 
-transporte(necochea, autobus, 24).
-transporte(necochea, avion, 29).
+% Transporte a Necochea
+transporte(necochea, colectivo, 24).
+transporte(necochea, automovil, 23).
 
-transporte(tandil, autobus, 21).
-transporte(tandil, avion, 26).
+% Transporte a Tandil
+transporte(tandil, colectivo, 21).
+transporte(tandil, automovil, 20).
+transporte(tandil, tren, 19).
 
-transporte(lujan, autobus, 18).
-transporte(lujan, avion, 22).
+% Transporte a Luján
+transporte(lujan, colectivo, 18).
+transporte(lujan, automovil, 15).
+transporte(lujan, tren, 12).
 
-transporte(san_pedro, autobus, 19).
-transporte(san_pedro, avion, 23).
+% Transporte a San Pedro
+transporte(san_pedro, colectivo, 19).
+transporte(san_pedro, automovil, 16).
+transporte(san_pedro, tren, 14).
 
-transporte(colon, autobus, 20).
-transporte(colon, avion, 24).
+% Transporte a Colón
+transporte(colon, colectivo, 20).
+transporte(colon, automovil, 18).
 
-transporte(villa_general_belgrano, autobus, 21).
-transporte(villa_general_belgrano, avion, 25).
+% Transporte a Villa General Belgrano
+transporte(villa_general_belgrano, colectivo, 21).
+transporte(villa_general_belgrano, automovil, 22).
+
+% Transporte a Merlo
+transporte(merlo, colectivo, 25).
+transporte(merlo, avion, 35).
+transporte(merlo, automovil, 30).
+
+% Transporte a Carro Quevedo
+transporte(carro_quevedo, colectivo, 28).
+transporte(carro_quevedo, avion, 38).
+transporte(carro_quevedo, automovil, 32).
+
+% Transporte a Misiones
+transporte(misiones, colectivo, 40).
+transporte(misiones, avion, 50).
+transporte(misiones, automovil, 45).
+
+% Transporte a Cataratas del Iguazú
+transporte(cataratas_del_iguazu, colectivo, 42).
+transporte(cataratas_del_iguazu, avion, 55).
+transporte(cataratas_del_iguazu, automovil, 47).
 

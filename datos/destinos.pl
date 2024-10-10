@@ -33,9 +33,6 @@ destino(villa_general_belgrano, rural, templado, muy_turistico).
 % Selva y cálido
 destino(iguazu, selva, calido, muy_turistico).
 destino(misiones, selva, calido, muy_turistico).
-destino(salto_del_agrio, selva, calido, medio_turistico).
 destino(cataratas_del_iguazu, selva, calido, muy_turistico).
-destino(paraquay, selva, calido, poco_turistico).
-destino(la_paz, selva, calido, medio_turistico).
 
 

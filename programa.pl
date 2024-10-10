@@ -1,32 +1,16 @@
-:-dynamic(destino/4).
-:-dynamic(actividad/3).
-:-dynamic(alojamiento/4).
-:-dynamic(transporte/3).
-:-dynamic(funciones_basicas/3).
-
-
 preguntar_destino(Destino):- 
-    write('¿Te gustaría visitar un lugar de Montaña, Playa, Rural o Selva? '), nl,
-        write('1-Montaña'), nl,
-        write('2-Playa'), nl,
-        write('3-Rural'), nl,
-        write('4-Selva'), nl,
-        write('Ingrese la opcion que mas prefiera: '),
-        leer(Lugarm), nl,nl,
-    write('¿Prefieres un clima Frío, Cálido o Templado? '), nl,
-        write('1-Frio'), nl,
-        write('2-Calido'), nl,
-        write('3-Templado'), nl,
-        write('Ingrese la opcion que mas prefiera: '),
+    elegir_lugar(Lugar), nl,nl,
+    write('¿Prefieres un clima frío, cálido o templado? '), nl,
+        write('Respuesta: '),
         leer(Clima), nl,nl,
-    write('¿Te gustaría que el lugar fuera Muy, Medio o Poco turístico? '), nl,
-        write('1-Muy Turistico'), nl,
-        write('2-Medio Turistico'), nl,
-        write('3-Poco Turistico'), nl,
-        write('Ingrese la opcion que mas prefiera: '),
+    write('¿Te gustaría que el lugar fuera muy, medio o poco concurrido? '), nl,
+        write('Respuesta: '),
         leer(Turismo), nl,nl,
-    preguntar_presupuesto(Presupuesto),
+    preguntar_presupuesto(Presupuesto), % agregar a listar destino
     listar_destinos(Destino, Lugar, Clima, Turismo).
+
+
+    
 
 listar_destinos(Destino, Lugar, Clima, Turismo):-destino(Destino,Lugar,Clima,Turismo),
     write(Destino), nl,
@@ -35,17 +19,13 @@ listar_destinos(Destino, Lugar, Clima, Turismo):-destino(Destino,Lugar,Clima,Tur
 listar_destinos_2(Destino, Lugar, Clima, Turismo):-findall(Destino, destino(Destino,Lugar,Clima,Turismo), Destino).
 
 preguntar_presupuesto(Presupuesto) :- 
-    write('¿Qué tipo de presupuesto manejas?'), nl, 
-        write('1- Bajo (menos de $500)'), nl,
-        write('2- Medio (entre $500 y $1500)'), nl,
-        write('3- Alto (más de $1500)'), nl,
+    write('¿Qué monto de presupuesto manejas?(dolarucos):'), nl, 
+        write('Respuesta: '), nl,
         leer(Presupuesto), nl.
 
 preguntar_duracion(Duracion) :-
-    write('¿Por cuánto tiempo planeas quedarte? (Corto, Medio, Largo): '), nl,
-        write('1- Corto (2-3 Dias)'), nl,
-        write('2- Medio (4-7 Dias)'), nl,
-        write('3- Largo (Más de 7 Dias)'), nl,
+    write('¿Por cuánto tiempo planeas quedarte? (en dias): '), nl,
+        write('Respuesta: '), nl,
         leer(Duracion).
 
 preguntar_actividades(Destino, ActividadesElegidas) :-
@@ -55,11 +35,28 @@ preguntar_actividades(Destino, ActividadesElegidas) :-
     write('¿Cuáles te gustaría realizar? Escribe los nombres de las actividades elegidas (ej: esqui, senderismo): '), nl,
     leer(ActividadesElegidas).
 
-preguntar_transporte(Destino, TransporteElegido) :-
-    write('¿Cómo te gustaría viajar al destino? (Avión, Colectivo, Auto): '), nl,
-        write('1- Avion'), nl,
-        write('2- Colectivo'), nl,
-        write('3- Auto'), nl,
+preguntar_tieneAuto(Respuesta) :-
+    write('¿Tenes automovil para el viaje?, puede ser suyo o de algun acompañante): '), nl,
+        write('Respuesta: '), nl,
+        leer(Respuesta),
+        tieneAuto(Respuesta).
+
+tieneAuto(si) :- comentarios_auto()
+tieneAuto(no) :- preguntar_transporte(TransporteElegido)
+
+% en caso de que tenga auto (despues para agregar completitud que dependan los consejos en base al lugar)
+comentarios_auto() :-
+    write('Entonces si tu idea es viajar con el auto nosotros podemos darte un estimado de lo que podrias llegar a gastar en conbustible.'), nl,
+    write('Ademas te daremos algunos consejos para que el viaje sea seguro y controlado: '), nl,
+    write('Hace el service completo de auto, mentene el seguro al dia, y fijate como tenes las llantas'), nl,
+    % write('¿Que te parece? ¿queres seguir con el auto o te gustaría tercerizar el viaje?'), nl,
+    % write('Respuesta: '), nl,
+    % leer(ConfirmacionAuto).
+    
+% en caso de que no quiera viajar en auto o no tenga
+preguntar_transporte(TransporteElegido) :-
+    write('¿Cómo te gustaría viajar al destino entonces?, en esta compañia manejamos logistica para vuelos, viajes en micros, incluso en tren para algunos destinos'), nl,
+        write('Respuesta: '), nl,
         leer(TransporteElegido).
 
 recomendar_alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoche) :-
@@ -72,20 +69,25 @@ recomendar_alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoc
 %                                fail.
 % listar_actividades(_).
 
-sistema_experto :-
-    consult(['datos/transporte.pl',
-    'datos/actividades.pl',
-    'datos/alojamiento.pl',
-    'datos/destinos.pl',
-    'funciones_basicas.pl']),
-    
-    
+consult(['datos/transporte.pl',
+'datos/actividades.pl',
+'datos/alojamiento.pl',
+'datos/destinos.pl',
+'funciones_basicas.pl',
+'preguntas/lugares.pl']).
+destino_es_caro(Destino):- !tiene_actividades_baratas(Destino), alojamiento_es_caro(Destino).
+destino_es_caro(Destino):- !tiene_actividades_baratas(Destino), alojamiento_es_regular(Destino).
+destino_es_regular(Destino):- tiene_actividades_baratas(Destino), alojamiento_es_regular(Destino).
+destino_es_barato(Destino):- tiene_actividades_baratas(Destino), alojamiento_es_barato(Destino).
 
+
+sistema_experto :-
     preguntar_destino(Destino),
     % listar_actividades(Destino),
     preguntar_duracion(Duracion),
     preguntar_actividades(Destino, ActividadesElegidas),
-    preguntar_transporte(Destino, TransporteElegido),
+    preguntar_tieneAuto(TieneAutomovilONo),
+    % preguntar_transporte(Destino, TransporteElegido),
 
     % Calcular costos totales
     transporte(Destino, TransporteElegido, CostoTransporte),
@@ -93,7 +95,7 @@ sistema_experto :-
     sum_list(CostosActividades, TotalActividades),
     
     % Duración del viaje
-    (Duracion = corto -> Noches = 2 ; Duracion = medio -> Noches = 5 ; Noches = 8),
+    (Duracion = 3 -> Noches = 2 ; Duracion = 6 -> Noches = 5 ; Noches = 8),
     
     recomendar_alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoche),
     
@@ -107,3 +109,5 @@ sistema_experto :-
     write('Duración del viaje: '), write(Noches), write(' noches'), nl,
     write('Total de actividades: '), write(TotalActividades), nl,
     write('Costo total estimado: $'), write(TotalCosto), nl.
+
+
