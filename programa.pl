@@ -36,7 +36,7 @@ preguntar_actividades(Destino, ActividadesElegidas) :-
     leer(ActividadesElegidas).
 
 preguntar_tieneAuto(Respuesta) :-
-    write('¿Tenes automovil para el viaje?, puede ser suyo o de algun acompañante): '), nl,
+    write('¿Tenes automovil para el viaje?, puede ser tuyo o de algun acompañante): '), nl,
         write('Respuesta: '), nl,
         leer(Respuesta),
         tieneAuto(Respuesta).
