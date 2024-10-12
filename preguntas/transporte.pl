@@ -1,36 +1,3 @@
-preguntar_tieneAuto(Respuesta) :-
-    write('¿Tenes automovil para el viaje?, puede ser tuyo o de algun acompañante): '), nl,
-        write('Respuesta: '), nl,
-        leer(Respuesta),
-        tieneAuto(Respuesta).
-
-tieneAuto(si) :- comentarios_auto()
-tieneAuto(no) :- preguntar_transporte(TransporteElegido)
-
-% en caso de que tenga auto (despues para agregar completitud que dependan los consejos en base al lugar)
-comentarios_auto() :-
-    write('Entonces si tu idea es viajar con el auto nosotros podemos darte un estimado de lo que podrias llegar a gastar en conbustible.'), nl,
-    write('Ademas te daremos algunos consejos para que el viaje sea seguro y controlado: '), nl,
-    write('Hace el service completo de auto, mentene el seguro al dia, y fijate como tenes las llantas'), nl,
-    % write('¿Que te parece? ¿queres seguir con el auto o te gustaría tercerizar el viaje?'), nl,
-    % write('Respuesta: '), nl,
-    % leer(ConfirmacionAuto).
-    
-% en caso de que no quiera viajar en auto o no tenga
-preguntar_transporte(TransporteElegido) :-
-    write('¿Cómo te gustaría viajar al destino entonces?, en esta compañia manejamos logistica para vuelos, viajes en micros, incluso en tren para algunos destinos'), nl,
-        write('Respuesta: '), nl,
-        leer(TransporteElegido).
-
-recomendar_alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoche) :-
-    alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoche).
-
------------------------------------------------------------
------------------------------------------------------------
------------------------------------------------------------
------------------------------------------------------------
------------------------------------------------------------
-
 % Base de conocimientos: respuesta y su relacion con un lugar
 
 respuesta_transporte('leer', tren).
@@ -183,7 +150,7 @@ determinar_transporte(Trasporte) :-
     reverse(Ordenada, [_-Trasporte|_]).
 
 % Ejecucion inicial
-preguntar_transporte :-
+preguntar_transporte(Transporte) :-
     realizar_preguntas,
-    determinar_transporte(Trasporte),
-    write('El tipo de trasporte al que queres viajar es: '), write(Trasporte).
+    determinar_transporte(Transporte),
+    write('El tipo de transporte que prefieres es: '), write(Transporte).

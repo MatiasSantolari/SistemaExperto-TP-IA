@@ -35,30 +35,6 @@ preguntar_actividades(Destino, ActividadesElegidas) :-
     write('¿Cuáles te gustaría realizar? Escribe los nombres de las actividades elegidas (ej: esqui, senderismo): '), nl,
     leer(ActividadesElegidas).
 
-preguntar_tieneAuto(Respuesta) :-
-    write('¿Tenes automovil para el viaje?, puede ser tuyo o de algun acompañante): '), nl,
-        write('Respuesta: '), nl,
-        leer(Respuesta),
-        tieneAuto(Respuesta).
-
-tieneAuto(si) :- comentarios_auto()
-tieneAuto(no) :- preguntar_transporte(TransporteElegido)
-
-% en caso de que tenga auto (despues para agregar completitud que dependan los consejos en base al lugar)
-comentarios_auto() :-
-    write('Entonces si tu idea es viajar con el auto nosotros podemos darte un estimado de lo que podrias llegar a gastar en conbustible.'), nl,
-    write('Ademas te daremos algunos consejos para que el viaje sea seguro y controlado: '), nl,
-    write('Hace el service completo de auto, mentene el seguro al dia, y fijate como tenes las llantas'), nl,
-    % write('¿Que te parece? ¿queres seguir con el auto o te gustaría tercerizar el viaje?'), nl,
-    % write('Respuesta: '), nl,
-    % leer(ConfirmacionAuto).
-    
-% en caso de que no quiera viajar en auto o no tenga
-preguntar_transporte(TransporteElegido) :-
-    write('¿Cómo te gustaría viajar al destino entonces?, en esta compañia manejamos logistica para vuelos, viajes en micros, incluso en tren para algunos destinos'), nl,
-        write('Respuesta: '), nl,
-        leer(TransporteElegido).
-
 recomendar_alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoche) :-
     alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoche).
 
@@ -74,11 +50,13 @@ consult(['datos/transporte.pl',
 'datos/alojamiento.pl',
 'datos/destinos.pl',
 'funciones_basicas.pl',
-'preguntas/lugares.pl']).
+'preguntas/lugares.pl',
+'preguntas/transporte.pl']).
 destino_es_caro(Destino):- !tiene_actividades_baratas(Destino), alojamiento_es_caro(Destino).
 destino_es_caro(Destino):- !tiene_actividades_baratas(Destino), alojamiento_es_regular(Destino).
 destino_es_regular(Destino):- tiene_actividades_baratas(Destino), alojamiento_es_regular(Destino).
 destino_es_barato(Destino):- tiene_actividades_baratas(Destino), alojamiento_es_barato(Destino).
+
 
 
 sistema_experto :-
@@ -86,8 +64,7 @@ sistema_experto :-
     % listar_actividades(Destino),
     preguntar_duracion(Duracion),
     preguntar_actividades(Destino, ActividadesElegidas),
-    preguntar_tieneAuto(TieneAutomovilONo),
-    % preguntar_transporte(Destino, TransporteElegido),
+    preguntar_transporte(TransporteElegido).
 
     % Calcular costos totales
     transporte(Destino, TransporteElegido, CostoTransporte),
