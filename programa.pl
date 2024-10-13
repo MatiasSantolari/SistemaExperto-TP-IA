@@ -47,12 +47,13 @@ preguntar_transporte(Destinos, Transporte):-
     findall(T, (member(Destino, Destinos), transporte(Destino, T, _)), Transportes),
     write('Los transportes disponibles a estos destinos son '), 
     mostrar_lista(Transportes), nl,  % Muestra la lista de transportes
-    write('¿En que medio de transporte preferis viajar?'),
     repeat,
+    (write('¿En que medio de transporte preferis viajar?'),
     leer(Transporte),
-    (member(Transporte, Transportes)), !,
+    member(Transporte, Transportes)),!,
     %filtrar destinos segun el medio de transporte elegido
-    findall(D, (member(Destino, Destinos), transporte(D, Transporte,_)), Destinos)
+    findall(D, (member(Destino, Destinos), transporte(D, Transporte, _)), Destinos)
+    % findall(Destino, (member(Destino, Destinos), transporte(Destino, Transporte, _)), NuevosDestinos),
     .
 
 elegir_destino(Destinos, Destino):-
