@@ -1,5 +1,6 @@
 :- consult('funciones_basicas.pl').
 % Base de conocimientos: respuesta y su relacion con un lugar
+:- dynamic(contador_lugar/2).
 
 respuesta_lugar('rural', campo).
 respuesta_lugar('paseo en bicicleta', campo).
@@ -22,7 +23,7 @@ respuesta_lugar('caminar en la playa', playa).
 respuesta_lugar('surfear', playa).
 respuesta_lugar('nadar', playa).
 respuesta_lugar('buceo', playa).
-respuesta_luegar('nada', playa).
+respuesta_lugar('nada', playa).
 respuesta_lugar('volleyball de playa', playa).
 respuesta_lugar('volleyball', playa).
 respuesta_lugar('fiesta en la playa', playa).
@@ -128,52 +129,50 @@ respuesta_lugar('acampar en la montaña', montana).
 
 
 
-:- dynamic(contador/2).
 
-contador(montana, 0).
-contador(selva, 0).
-contador(playa, 0).
-contador(campo, 0).
+
+contador_lugar(montana, 0).
+contador_lugar(selva, 0).
+contador_lugar(playa, 0).
+contador_lugar(campo, 0).
 
 
 preguntar_lugar(Lugar) :-
-    realizar_preguntas,
+    realizar_preguntas_l,
     determinar_lugar(Lugar),
     write('Podria interesarte viajar a '), write(Lugar),nl.
 
 
-realizar_preguntas :-
-    preguntar('¿Qué planeas hacer en tus vacaciones?'),
-    preguntar('¿Qué te gustaria hacer durante tu tiempo libre?'),
-    preguntar('¿Qué lugares te resultan más atractivos?'),
-    preguntar('¿Que actividades te gustarian realizar en ese lugar?').
+realizar_preguntas_l :-
+    preguntar_l('¿Qué planeas hacer en tus vacaciones?'),
+    preguntar_l('¿Qué te gustaria hacer durante tu tiempo libre?'),
+    preguntar_l('¿Qué lugares te resultan más atractivos?'),
+    preguntar_l('¿Que actividades te gustarian realizar en ese lugar?').
 
 
-preguntar(Pregunta) :-
+preguntar_l(Pregunta) :-
     repeat,
     write(Pregunta), nl,
     leer(Respuesta),
-    ( buscar_y_actualizar(Respuesta)).
+    ( buscar_y_actualizar_l(Respuesta)), !.
 
 
 % Buscar la respuesta del usuario y actualizar el contador
-buscar_y_actualizar(Respuesta) :-
+buscar_y_actualizar_l(Respuesta) :-
     ( respuesta_lugar(Respuesta, Lugar) ->
-        actualizar_contadores(Lugar) ; 
+        actualizar_contadores_l(Lugar) ; 
         write('Lo siento, no entendi tu respuesta.'), nl, fail).
 
 
 % Actualiza el contador para el lugar correspondiente
-actualizar_contadores(Lugar) :-
-    retract(contador(Lugar, ContadorActual)),
+actualizar_contadores_l(Lugar) :-
+    retract(contador_lugar(Lugar, ContadorActual)),
     NuevoContador is ContadorActual + 1,
-    assert(contador(Lugar, NuevoContador)).
+    assert(contador_lugar(Lugar, NuevoContador)).
 
 
 % Determinar el Lugar final según el contador mas alto
 determinar_lugar(Lugar) :-
-    findall(Contador-Lugar, contador(Lugar, Contador), Lista),
+    findall(Contador-Lugar, contador_lugar(Lugar, Contador), Lista),
     sort(Lista, Ordenada),
     reverse(Ordenada, [_-Lugar|_]).
-
-

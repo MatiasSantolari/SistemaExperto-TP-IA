@@ -1,5 +1,5 @@
 :- consult('funciones_basicas.pl').
-
+:- dynamic(contador_clima/2).
 
 respuesta_clima('nieve', frio).
 respuesta_clima('nevar', frio).
@@ -22,26 +22,29 @@ respuesta_clima('junio', frio).
 respuesta_clima('julio', frio).
 respuesta_clima('agosto', frio).
 
-respuesta_clima('calor', calor).
-respuesta_clima('temperatura alta', calor).
-respuesta_clima('calor extremo', calor).
-respuesta_clima('calor moderado', calor).
-respuesta_clima('calor intenso', calor).
-respuesta_clima('tropical', calor).
-respuesta_clima('verano', calor).
-respuesta_clima('soleado', calor).
-respuesta_clima('calor suave', calor).
-respuesta_clima('despejado', calor).
-respuesta_clima('alta humedad', calor).
-respuesta_clima('calido humedo', calor).
-respuesta_clima('calido seco', calor).
-respuesta_clima('mas de 30 grados', calor).
-respuesta_clima('calido moderado', calor).
-respuesta_clima('tropical humedo', calor).
-respuesta_clima('diciembre', calor).
-respuesta_clima('enero', calor).
-respuesta_clima('febrero', calor).
-respuesta_clima('marzo', calor).
+respuesta_clima('calor', calido).
+respuesta_clima('calido', calido).
+respuesta_clima('temperatura alta', calido).
+respuesta_clima('calor extremo', calido).
+respuesta_clima('calor moderado', calido).
+respuesta_clima('calor intenso', calido).
+respuesta_clima('tropical', calido).
+respuesta_clima('verano', calido).
+respuesta_clima('soleado', calido).
+respuesta_clima('calor suave', calido).
+respuesta_clima('despejado', calido).
+respuesta_clima('alta humedad', calido).
+respuesta_clima('calor humedo', calido).
+respuesta_clima('calor seco', calido).
+respuesta_clima('calido humedo', calido).
+respuesta_clima('calido seco', calido).
+respuesta_clima('mas de 30 grados', calido).
+respuesta_clima('calor moderado', calido).
+respuesta_clima('tropical humedo', calido).
+respuesta_clima('diciembre', calido).
+respuesta_clima('enero', calido).
+respuesta_clima('febrero', calido).
+respuesta_clima('marzo', calido).
 
 respuesta_clima('templado', templado).
 respuesta_clima('temperatura normal', templado).
@@ -68,48 +71,45 @@ respuesta_clima('mayo', templado).
 
 
 
-:- dynamic(contador/2).
-
-contador(frio, 0).
-contador(templado, 0).
-contador(calor, 0).
+contador_clima(frio, 0).
+contador_clima(templado, 0).
+contador_clima(calido, 0).
 
 
 preguntar_clima(Clima) :-
-    realizar_preguntas,
+    realizar_preguntas_clima,
     determinar_clima(Clima),
     write('Buscaremos un lugar con clima '), write(Clima),nl.
 
 
-realizar_preguntas :-
-    preguntar('¿Como es tu clima ideal?'),
-    preguntar('¿En que momento del año te gustaría viajar?').
+realizar_preguntas_clima :-
+    preguntar_cl('¿Como es tu clima ideal?'),
+    preguntar_cl('¿En que momento del año te gustaría viajar?').
 
 
-% Preguntar y manejar la respuesta
-preguntar(Pregunta) :-
+preguntar_cl(Pregunta) :-
     repeat,
     write(Pregunta), nl,
     leer(Respuesta),
-    ( buscar_y_actualizar(Respuesta)).
+    ( buscar_y_actualizar_cl(Respuesta)),!.
 
 
 % Buscar la respuesta del usuario y actualizar el contador
-buscar_y_actualizar(Respuesta) :-
+buscar_y_actualizar_cl(Respuesta) :-
     ( respuesta_clima(Respuesta, Clima) ->
-        actualizar_contadores(Clima) ; 
+        actualizar_contadores_cl(Clima) ; 
         write('Lo siento, no entendi tu respuesta.'), nl, fail).
 
 
 % Actualiza el contador para el Clima correspondiente
-actualizar_contadores(Clima) :-
-    retract(contador(Clima, ContadorActual)),
+actualizar_contadores_cl(Clima) :-
+    retract(contador_clima(Clima, ContadorActual)),
     NuevoContador is ContadorActual + 1,
-    assert(contador(Clima, NuevoContador)).
+    assert(contador_clima(Clima, NuevoContador)).
 
 
 % Determinar el Clima final segun el contador mas alto
 determinar_clima(Clima) :-
-    findall(Contador-Clima, contador(Clima, Contador), Lista),
+    findall(Contador-Clima, contador_clima(Clima, Contador), Lista),
     sort(Lista, Ordenada),
     reverse(Ordenada, [_-Clima|_]).

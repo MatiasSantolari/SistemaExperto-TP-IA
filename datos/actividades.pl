@@ -129,6 +129,6 @@ destino_deportivo(Destino):- actividad(Destino, Actividad,_), actividad_es(depor
 destino_recreativo(Destino):- actividad(Destino, Actividad,_), actividad_es(recreativa, Actividad).
 tiene_actividades_extremas(Destino):- actividad(Destino, Actividad,_), actividad_es(extremo, Actividad).
 
-tiene_actividades_baratas(Destino):- actividad(Destino, _, X), X<=20.
+tiene_actividades_baratas(Destino):- actividad(Destino, _, X), X=<20.
 
 % Consultas

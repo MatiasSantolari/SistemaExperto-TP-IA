@@ -1,5 +1,8 @@
 :- consult('funciones_basicas.pl').
 
+:- dynamic(contador_concurrencia/2).
+
+
 respuesta_concurrencia('tranquilo', baja_concurrencia).
 respuesta_concurrencia('poca gente', baja_concurrencia).
 respuesta_concurrencia('poca', baja_concurrencia).
@@ -40,49 +43,49 @@ respuesta_concurrencia('multitud', alta_concurrencia).
 
 
 
-:- dynamic(contador/2).
 
-contador(alta_concurrencia, 0). % alta concurrencia
-contador(media_concurrencia, 0). % media concurrencia
-contador(baja_concurrencia, 0). % baja concurrencia
+
+contador_concurrencia(alta_concurrencia, 0). % alta concurrencia
+contador_concurrencia(media_concurrencia, 0). % media concurrencia
+contador_concurrencia(baja_concurrencia, 0). % baja concurrencia
 
 
 preguntar_concurrencia(Concurrencia) :-
-    realizar_preguntas,
+    realizar_preguntas_c,
     determinar_Concurrencia(Concurrencia),
     write('Parece que te gusta viajar a lugares con '), write(Concurrencia),nl.
 
 
-realizar_preguntas :-
-    preguntar('¿Te sentis a gusto en un lugar con mucha o poca gente?'),
-    preguntar('¿Que atracciones te gustaria visitar?'),
-    preguntar('¿Que tipo de alojamiento te gusta? Hotel, cabaña, camping u otro').
+realizar_preguntas_c :-
+    preguntar_c('¿Te sentis a gusto en un lugar con mucha o poca gente?'),
+    preguntar_c('¿Que atracciones te gustaria visitar?'),
+    preguntar_c('¿Que tipo de alojamiento te gusta? Hotel, cabaña, camping u otro').
 
 
-preguntar(Pregunta) :-
+preguntar_c(Pregunta) :-
     repeat,
     write(Pregunta), nl,
     leer(Respuesta),
-    ( buscar_y_actualizar(Respuesta)).
+    ( buscar_y_actualizar_c(Respuesta)), !.
 
 
 % Buscar la respuesta del usuario y actualizar el contador
-buscar_y_actualizar(Respuesta) :-
+buscar_y_actualizar_c(Respuesta) :-
     ( respuesta_concurrencia(Respuesta, Concurrencia) ->
-        actualizar_contadores(Concurrencia) ; 
+        actualizar_contadores_c(Concurrencia) ; 
         write('Lo siento, no entendi tu respuesta.'), nl, fail).
 
 
 % Actualiza el contador para el Concurrencia correspondiente
-actualizar_contadores(Concurrencia) :-
-    retract(contador(Concurrencia, ContadorActual)),
+actualizar_contadores_c(Concurrencia) :-
+    retract(contador_concurrencia(Concurrencia, ContadorActual)),
     NuevoContador is ContadorActual + 1,
-    assert(contador(Concurrencia, NuevoContador)).
+    assert(contador_concurrencia(Concurrencia, NuevoContador)).
 
 
 % Determinar el Concurrencia final según el contador mas alto
 determinar_Concurrencia(Concurrencia) :-
-    findall(Contador-Concurrencia, contador(Concurrencia, Contador), Lista),
+    findall(Contador-Concurrencia, contador_concurrencia(Concurrencia, Contador), Lista),
     sort(Lista, Ordenada),
     reverse(Ordenada, [_-Concurrencia|_]).
 

@@ -11,16 +11,20 @@ preguntar_destino(Destino):-
     preguntar_lugar(Lugar),
     preguntar_clima(Clima),
     preguntar_concurrencia(Concurrencia),
-    listar_destinos(Destino,Lugar,Clima,Concurrencia).
+    listar_destinos_2(Destino,Lugar,Clima,Concurrencia).
 
 
     
 
-listar_destinos(Destino, Lugar, Clima, Concurrencia):-destino(Destino,Lugar,Clima,Concurrencia),
-    write(Destino), nl,
+listar_destinos(Destino, Lugar, Clima, Concurrencia):-
+    destino(Destino,Lugar,Clima,Concurrencia),
+    write('Podria interesarte viajar al Destino: '), write(Destino), nl,
     fail.
     
-listar_destinos_2(Destino, Lugar, Clima, Concurrencia):-findall(Destino, destino(Destino,Lugar,Clima,Concurrencia), Destino).
+listar_destinos_2(Destino, Lugar, Clima, Concurrencia):-findall(Destino, destino(Destino,Lugar,Clima,Concurrencia), Destino),
+    write('Podria interesarte viajar a '),
+    mostrar_lista(Destino).
+
 
 preguntar_presupuesto(Presupuesto) :- 
     write('¿Qué monto de presupuesto manejas?(dolarucos):'), nl, 
@@ -32,36 +36,15 @@ preguntar_duracion(Duracion) :-
         write('Respuesta: '), nl,
         leer(Duracion).
 
-preguntar_actividades(Destino, ActividadesElegidas) :-
-    findall(A, actividad(Destino, A, _), Actividades),
-    write('Estas son las actividades disponibles en '), write(Destino), write(': '), nl,
-    write(Actividades), nl,
+preguntar_actividades(Destinos, ActividadesElegidas) :-
+    findall(A, (member(Destino, Destinos), actividad(Destino, A, _)), Actividades),  % Encuentra todas las actividades para los destinos en la lista
+    write('Estas son las actividades disponibles en '), nl,
+    mostrar_lista(Destinos),  % Muestra la lista de destinos
+    write(': '), nl,
+    mostrar_lista(Actividades), nl,
     write('¿Cuáles te gustaría realizar? Escribe los nombres de las actividades elegidas (ej: esqui, senderismo): '), nl,
     leer(ActividadesElegidas).
 
-preguntar_tieneAuto(Respuesta) :-
-    write('¿Tenes automovil para el viaje?, puede ser suyo o de algun acompañante): '), nl,
-        write('Respuesta: '), nl,
-        leer(Respuesta),
-        tieneAuto(Respuesta).
-
-tieneAuto(si) :- comentarios_auto()
-tieneAuto(no) :- preguntar_transporte(TransporteElegido)
-
-% en caso de que tenga auto (despues para agregar completitud que dependan los consejos en base al lugar)
-comentarios_auto() :-
-    write('Entonces si tu idea es viajar con el auto nosotros podemos darte un estimado de lo que podrias llegar a gastar en conbustible.'), nl,
-    write('Ademas te daremos algunos consejos para que el viaje sea seguro y controlado: '), nl,
-    write('Hace el service completo de auto, mentene el seguro al dia, y fijate como tenes las llantas'), nl,
-    % write('¿Que te parece? ¿queres seguir con el auto o te gustaría tercerizar el viaje?'), nl,
-    % write('Respuesta: '), nl,
-    % leer(ConfirmacionAuto).
-    
-% en caso de que no quiera viajar en auto o no tenga
-preguntar_transporte(TransporteElegido) :-
-    write('¿Cómo te gustaría viajar al destino entonces?, en esta compañia manejamos logistica para vuelos, viajes en micros, incluso en tren para algunos destinos'), nl,
-        write('Respuesta: '), nl,
-        leer(TransporteElegido).
 
 recomendar_alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoche) :-
     alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoche).
@@ -73,22 +56,21 @@ recomendar_alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoc
 %                                fail.
 % listar_actividades(_).
 
-destino_es_caro(Destino):- !tiene_actividades_baratas(Destino), alojamiento_es_caro(Destino).
-destino_es_caro(Destino):- !tiene_actividades_baratas(Destino), alojamiento_es_regular(Destino).
+destino_es_caro(Destino):- \+ tiene_actividades_baratas(Destino), alojamiento_es_caro(Destino).
+destino_es_caro(Destino):- \+ tiene_actividades_baratas(Destino), alojamiento_es_regular(Destino).
 destino_es_regular(Destino):- tiene_actividades_baratas(Destino), alojamiento_es_regular(Destino).
 destino_es_barato(Destino):- tiene_actividades_baratas(Destino), alojamiento_es_barato(Destino).
 
 
 sistema_experto :-
     preguntar_destino(Destino),
-    % listar_actividades(Destino),
     preguntar_duracion(Duracion),
-    preguntar_actividades(Destino, ActividadesElegidas),
-    preguntar_tieneAuto(TieneAutomovilONo),
-    % preguntar_transporte(Destino, TransporteElegido),
+    %preguntar_transporte(Transporte),
+    %elegir_destino(D),
+    %preguntar_actividades(D, ActividadesElegidas),
 
     % Calcular costos totales
-    transporte(Destino, TransporteElegido, CostoTransporte),
+    transporte(D, TransporteElegido, CostoTransporte),
     findall(CostoActividad, (member(Actividad, ActividadesElegidas), actividad(Destino, Actividad, CostoActividad)), CostosActividades),
     sum_list(CostosActividades, TotalActividades),
     

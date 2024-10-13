@@ -159,6 +159,6 @@ alojamiento(villa_general_belgrano,  hostal_monte_aleman, 25).
 alojamiento(villa_general_belgrano,  hotel_bosque_encantado, 75).
 alojamiento(villa_general_belgrano,  resort_vista_serena, 180).
 
-alojamiento_es_barato(Destino) :- alojamiento(Destino,_,X), X<=50.
-alojamiento_es_regular(Destino) :- alojamiento(Destino,_,X), X>50, X<=100.
-alojamiento_es_caro(Destino) :- !alojamiento_es_barato(Destino), !alojamiento_es_regular(Destino).
+alojamiento_es_barato(Destino) :- alojamiento(Destino,_,X), X =< 50.
+alojamiento_es_regular(Destino) :- alojamiento(Destino,_,X), X > 50, X =< 100.
+alojamiento_es_caro(Destino) :- alojamiento(Destino,_,X), X > 100.
