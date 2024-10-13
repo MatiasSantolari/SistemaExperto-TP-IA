@@ -1,5 +1,5 @@
-% Inicialización de los contadores
-:- dynamic(contador/2).
+:- consult('funciones_basicas.pl').
+
 
 respuesta_clima('nieve', frio).
 respuesta_clima('nevar', frio).
@@ -67,10 +67,39 @@ respuesta_clima('mayo', templado).
 
 
 
-% Hechos para los contadores, inicialmente todos en 0
+
+:- dynamic(contador/2).
+
 contador(frio, 0).
 contador(templado, 0).
 contador(calor, 0).
+
+
+preguntar_clima(Clima) :-
+    realizar_preguntas,
+    determinar_clima(Clima),
+    write('Buscaremos un lugar con clima '), write(Clima),nl.
+
+
+realizar_preguntas :-
+    preguntar('¿Como es tu clima ideal?'),
+    preguntar('¿En que momento del año te gustaría viajar?').
+
+
+% Preguntar y manejar la respuesta
+preguntar(Pregunta) :-
+    repeat,
+    write(Pregunta), nl,
+    leer(Respuesta),
+    ( buscar_y_actualizar(Respuesta)).
+
+
+% Buscar la respuesta del usuario y actualizar el contador
+buscar_y_actualizar(Respuesta) :-
+    ( respuesta_clima(Respuesta, Clima) ->
+        actualizar_contadores(Clima) ; 
+        write('Lo siento, no entendi tu respuesta.'), nl, fail).
+
 
 % Actualiza el contador para el Clima correspondiente
 actualizar_contadores(Clima) :-
@@ -78,35 +107,9 @@ actualizar_contadores(Clima) :-
     NuevoContador is ContadorActual + 1,
     assert(contador(Clima, NuevoContador)).
 
-% Buscar la respuesta del usuario y actualizar el contador
-buscar_y_actualizar(Respuesta) :-
-    ( respuesta_clima(Respuesta, Clima) ->
-        actualizar_contadores(Clima)
-    ; write('Respuesta no reconocida.'), nl
-    ).
-
-% Preguntar y manejar la respuesta
-preguntar(Pregunta) :-
-    write(Pregunta), nl,
-    read(Respuesta),
-    buscar_y_actualizar(Respuesta).
-
-% Función principal para hacer las preguntas
-realizar_preguntas :-
-    preguntar('¿Que tipo de clima preferis?').
-    preguntar('¿Como es tu clima ideal?').
-    preguntar('¿Como es un dia ideal para vos?').
-    preguntar('¿En que estación del año te gustaría viajar?').
-    preguntar('¿En que mes del año te gustaria viajar?').
 
 % Determinar el Clima final segun el contador mas alto
-determinar_Clima(Clima) :-
+determinar_clima(Clima) :-
     findall(Contador-Clima, contador(Clima, Contador), Lista),
     sort(Lista, Ordenada),
     reverse(Ordenada, [_-Clima|_]).
-
-% Ejecución inicial
-preguntar_Clima :-
-    realizar_preguntas,
-    determinar_Clima(Clima),
-    write('Tu clima preferido para el viaje es: '), write(Clima).

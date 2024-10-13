@@ -1,19 +1,20 @@
-
+:- consult('funciones_basicas.pl').
 % Base de conocimientos: respuesta y su relacion con un lugar
 
-respuesta_lugar('rural', rural).
-respuesta_lugar('paseo en bicicleta', rural).
-respuesta_lugar('granja', rural).
-respuesta_lugar('campo abierto', rural).
-respuesta_lugar('casa de campo', rural).
-respuesta_lugar('silencio', rural).
-respuesta_lugar('estrellas', rural).
-respuesta_lugar('vida sencilla', rural).
-respuesta_lugar('naturaleza', rural).
-respuesta_lugar('pasear a caballo', rural).
-respuesta_lugar('pueblitos rurales', rural).
-respuesta_lugar('cultivar plantas', rural).
-respuesta_lugar('aldeas pintorescas', rural).
+respuesta_lugar('rural', campo).
+respuesta_lugar('paseo en bicicleta', campo).
+respuesta_lugar('granja', campo).
+respuesta_lugar('campo abierto', campo).
+respuesta_lugar('casa de campo', campo).
+respuesta_lugar('silencio', campo).
+respuesta_lugar('estrellas', campo).
+respuesta_lugar('vida sencilla', campo).
+respuesta_lugar('naturaleza', campo).
+respuesta_lugar('pasear a caballo', campo).
+respuesta_lugar('pueblitos campoes', campo).
+respuesta_lugar('cultivar plantas', campo).
+respuesta_lugar('aldeas pintorescas', campo).
+respuesta_lugar('mirar el atardecer', campo).
 
 respuesta_lugar('playa', playa).
 respuesta_lugar('playa tranquila', playa).
@@ -21,13 +22,19 @@ respuesta_lugar('caminar en la playa', playa).
 respuesta_lugar('surfear', playa).
 respuesta_lugar('nadar', playa).
 respuesta_lugar('buceo', playa).
+respuesta_luegar('nada', playa).
 respuesta_lugar('volleyball de playa', playa).
+respuesta_lugar('volleyball', playa).
 respuesta_lugar('fiesta en la playa', playa).
+respuesta_lugar('ir de fiesta', playa).
+respuesta_lugar('festejar', playa).
 respuesta_lugar('atardecer en la playa', playa).
+
 respuesta_lugar('arena blanca', playa).
 respuesta_lugar('bronceado', playa).
 respuesta_lugar('navegar', playa).
 respuesta_lugar('pescar', playa).
+respuesta_lugar('lago', playa).
 respuesta_lugar('playa con palmeras', playa).
 respuesta_lugar('costa con acantilados', playa).
 respuesta_lugar('nadar en el mar', playa).
@@ -50,6 +57,7 @@ respuesta_lugar('avistamiento de fauna', selva).
 respuesta_lugar('bosques espesos', selva).
 respuesta_lugar('explorar senderos', selva).
 respuesta_lugar('selva tropical', selva).
+respuesta_lugar('lago', selva).
 
 respuesta_lugar('escalar', montana).
 respuesta_lugar('senderismo', montana).
@@ -120,15 +128,40 @@ respuesta_lugar('acampar en la montaña', montana).
 
 
 
-
-% Inicializacion de los contadores
 :- dynamic(contador/2).
 
-% Hechos para los contadores, inicialmente todos en 0
 contador(montana, 0).
 contador(selva, 0).
 contador(playa, 0).
-contador(rural, 0).
+contador(campo, 0).
+
+
+preguntar_lugar(Lugar) :-
+    realizar_preguntas,
+    determinar_lugar(Lugar),
+    write('Podria interesarte viajar a '), write(Lugar),nl.
+
+
+realizar_preguntas :-
+    preguntar('¿Qué planeas hacer en tus vacaciones?'),
+    preguntar('¿Qué te gustaria hacer durante tu tiempo libre?'),
+    preguntar('¿Qué lugares te resultan más atractivos?'),
+    preguntar('¿Que actividades te gustarian realizar en ese lugar?').
+
+
+preguntar(Pregunta) :-
+    repeat,
+    write(Pregunta), nl,
+    leer(Respuesta),
+    ( buscar_y_actualizar(Respuesta)).
+
+
+% Buscar la respuesta del usuario y actualizar el contador
+buscar_y_actualizar(Respuesta) :-
+    ( respuesta_lugar(Respuesta, Lugar) ->
+        actualizar_contadores(Lugar) ; 
+        write('Lo siento, no entendi tu respuesta.'), nl, fail).
+
 
 % Actualiza el contador para el lugar correspondiente
 actualizar_contadores(Lugar) :-
@@ -136,25 +169,6 @@ actualizar_contadores(Lugar) :-
     NuevoContador is ContadorActual + 1,
     assert(contador(Lugar, NuevoContador)).
 
-% Buscar la respuesta del usuario y actualizar el contador
-buscar_y_actualizar(Respuesta) :-
-    ( respuesta_lugar(Respuesta, Lugar) ->
-        actualizar_contadores(Lugar)
-    ; write('Respuesta no reconocida.'), nl
-    ).
-
-% Preguntar y manejar la respuesta
-preguntar(Pregunta) :-
-    write(Pregunta), nl,
-    read(Respuesta),
-    buscar_y_actualizar(Respuesta).
-
-% Funcion principal para hacer las preguntas
-realizar_preguntas :-
-    preguntar('¿Qué planeas hacer en tus vacaciones?'),
-    preguntar('¿Qué te gustaria hacer durante tu tiempo libre?'),
-    preguntar('¿Qué lugares te resultan más atractivos?'),
-    preguntar('¿Que actividades te gustarian realizar en ese lugar?').
 
 % Determinar el Lugar final según el contador mas alto
 determinar_lugar(Lugar) :-
@@ -162,8 +176,4 @@ determinar_lugar(Lugar) :-
     sort(Lista, Ordenada),
     reverse(Ordenada, [_-Lugar|_]).
 
-% Ejecucion inicial
-preguntar_lugar :-
-    realizar_preguntas,
-    determinar_lugar(Lugar),
-    write('El tipo de lugar al que queres viajar es: '), write(Lugar).
+

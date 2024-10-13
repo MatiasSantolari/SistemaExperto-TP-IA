@@ -1,22 +1,26 @@
+:- consult(['datos/transporte.pl',
+'datos/actividades.pl',
+'datos/alojamiento.pl',
+'datos/destinos.pl',
+'funciones_basicas.pl',
+'preguntas/lugares.pl',
+'preguntas/concurrencia.pl',
+'preguntas/clima.pl']).
+
 preguntar_destino(Destino):- 
-    elegir_lugar(Lugar), nl,nl,
-    write('¿Prefieres un clima frío, cálido o templado? '), nl,
-        write('Respuesta: '),
-        leer(Clima), nl,nl,
-    write('¿Te gustaría que el lugar fuera muy, medio o poco concurrido? '), nl,
-        write('Respuesta: '),
-        leer(Turismo), nl,nl,
-    preguntar_presupuesto(Presupuesto), % agregar a listar destino
-    listar_destinos(Destino, Lugar, Clima, Turismo).
+    preguntar_lugar(Lugar),
+    preguntar_clima(Clima),
+    preguntar_concurrencia(Concurrencia),
+    listar_destinos(Destino,Lugar,Clima,Concurrencia).
 
 
     
 
-listar_destinos(Destino, Lugar, Clima, Turismo):-destino(Destino,Lugar,Clima,Turismo),
+listar_destinos(Destino, Lugar, Clima, Concurrencia):-destino(Destino,Lugar,Clima,Concurrencia),
     write(Destino), nl,
     fail.
     
-listar_destinos_2(Destino, Lugar, Clima, Turismo):-findall(Destino, destino(Destino,Lugar,Clima,Turismo), Destino).
+listar_destinos_2(Destino, Lugar, Clima, Concurrencia):-findall(Destino, destino(Destino,Lugar,Clima,Concurrencia), Destino).
 
 preguntar_presupuesto(Presupuesto) :- 
     write('¿Qué monto de presupuesto manejas?(dolarucos):'), nl, 
@@ -69,12 +73,6 @@ recomendar_alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoc
 %                                fail.
 % listar_actividades(_).
 
-consult(['datos/transporte.pl',
-'datos/actividades.pl',
-'datos/alojamiento.pl',
-'datos/destinos.pl',
-'funciones_basicas.pl',
-'preguntas/lugares.pl']).
 destino_es_caro(Destino):- !tiene_actividades_baratas(Destino), alojamiento_es_caro(Destino).
 destino_es_caro(Destino):- !tiene_actividades_baratas(Destino), alojamiento_es_regular(Destino).
 destino_es_regular(Destino):- tiene_actividades_baratas(Destino), alojamiento_es_regular(Destino).
