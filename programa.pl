@@ -36,15 +36,33 @@ preguntar_duracion(Duracion) :-
         write('Respuesta: '), nl,
         leer(Duracion).
 
-preguntar_actividades(Destinos, ActividadesElegidas) :-
-    findall(A, (member(Destino, Destinos), actividad(Destino, A, _)), Actividades),  % Encuentra todas las actividades para los destinos en la lista
-    write('Estas son las actividades disponibles en '), nl,
-    mostrar_lista(Destinos),  % Muestra la lista de destinos
-    write(': '), nl,
+preguntar_actividades(Destino, ActividadesElegidas) :-
+    findall(A, actividad(Destino, A, _), Actividades),  % Encuentra todas las actividades para los destinos en la lista
+    write('Las actividades disponibles en '), write(Destino), write(' son '),
     mostrar_lista(Actividades), nl,
     write('¿Cuáles te gustaría realizar? Escribe los nombres de las actividades elegidas (ej: esqui, senderismo): '), nl,
     leer(ActividadesElegidas).
 
+preguntar_transporte(Destinos, Transporte):-
+    findall(T, (member(Destino, Destinos), transporte(Destino, T, _)), Transportes),
+    write('Los transportes disponibles a estos destinos son '), 
+    mostrar_lista(Transportes), nl,  % Muestra la lista de transportes
+    write('¿En que medio de transporte preferis viajar?'),
+    repeat,
+    leer(Transporte),
+    (member(Transporte, Transportes)), !,
+    %filtrar destinos segun el medio de transporte elegido
+    findall(D, (member(Destino, Destinos), transporte(D, Transporte,_)), Destinos)
+    .
+
+elegir_destino(Destinos, Destino):-
+    write('Los destinos que se ajustan a tus preferencias son '),
+    mostrar_lista(Destinos), nl,
+    write('¿Cual destino te gustaría explorar?'),
+    repeat,
+    leer(Destino),
+    (member(Destino, Destinos)), !.
+    
 
 recomendar_alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoche) :-
     alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoche).
@@ -56,6 +74,7 @@ recomendar_alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoc
 %                                fail.
 % listar_actividades(_).
 
+
 destino_es_caro(Destino):- \+ tiene_actividades_baratas(Destino), alojamiento_es_caro(Destino).
 destino_es_caro(Destino):- \+ tiene_actividades_baratas(Destino), alojamiento_es_regular(Destino).
 destino_es_regular(Destino):- tiene_actividades_baratas(Destino), alojamiento_es_regular(Destino).
@@ -63,14 +82,14 @@ destino_es_barato(Destino):- tiene_actividades_baratas(Destino), alojamiento_es_
 
 
 sistema_experto :-
-    preguntar_destino(Destino),
+    preguntar_destino(Destinos),
     preguntar_duracion(Duracion),
-    %preguntar_transporte(Transporte),
-    %elegir_destino(D),
-    %preguntar_actividades(D, ActividadesElegidas),
+    preguntar_transporte(Destinos, Transporte),
+    elegir_destino(Destinos, Destino),
+    preguntar_actividades(Destino, ActividadesElegidas),
 
     % Calcular costos totales
-    transporte(D, TransporteElegido, CostoTransporte),
+    transporte(Destino, Transporte, CostoTransporte),
     findall(CostoActividad, (member(Actividad, ActividadesElegidas), actividad(Destino, Actividad, CostoActividad)), CostosActividades),
     sum_list(CostosActividades, TotalActividades),
     
