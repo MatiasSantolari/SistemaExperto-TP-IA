@@ -27,6 +27,7 @@ respuesta_concurrencia('apartamento', media_concurrencia).
 respuesta_concurrencia('alojamiento familiar', media_concurrencia).
 respuesta_concurrencia('casita', media_concurrencia).
 respuesta_concurrencia('campamento', media_concurrencia).
+respuesta_concurrencia('mas o menos', media_concurrencia).
 
 respuesta_concurrencia('turistico', alta_concurrencia).
 respuesta_concurrencia('ciudad', alta_concurrencia).
