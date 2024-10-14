@@ -52,9 +52,7 @@ preguntar_transporte(Destinos, Transporte):-
     leer(Transporte),
     member(Transporte, Transportes)),!,
     %filtrar destinos segun el medio de transporte elegido
-    findall(D, (member(Destino, Destinos), transporte(D, Transporte, _)), Destinos)
-    % findall(Destino, (member(Destino, Destinos), transporte(Destino, Transporte, _)), NuevosDestinos),
-    .
+    findall(Destino, (member(Destino, Destinos), transporte(Destino, Transporte, _)), Destinos).
 
 elegir_destino(Destinos, Destino):-
     write('Los destinos que se ajustan a tus preferencias son '),
@@ -67,7 +65,7 @@ elegir_destino(Destinos, Destino):-
 
 recomendar_alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoche) :-
     alojamiento(Destino, Presupuesto, AlojamientoRecomendado, CostoPorNoche).
-
+    % aca falta completar
 
 
 % listar_actividades(Destino):- actividad(Destino, Actividad),

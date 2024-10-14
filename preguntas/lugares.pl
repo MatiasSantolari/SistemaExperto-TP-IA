@@ -18,6 +18,8 @@ respuesta_lugar('aldeas pintorescas', campo).
 respuesta_lugar('mirar el atardecer', campo).
 
 respuesta_lugar('playa', playa).
+respuesta_lugar('playas', playa).
+respuesta_lugar('descansar', playa).
 respuesta_lugar('playa tranquila', playa).
 respuesta_lugar('caminar en la playa', playa).
 respuesta_lugar('surfear', playa).
@@ -30,7 +32,6 @@ respuesta_lugar('fiesta en la playa', playa).
 respuesta_lugar('ir de fiesta', playa).
 respuesta_lugar('festejar', playa).
 respuesta_lugar('atardecer en la playa', playa).
-
 respuesta_lugar('arena blanca', playa).
 respuesta_lugar('bronceado', playa).
 respuesta_lugar('navegar', playa).
