@@ -42,7 +42,40 @@ respuesta_lugar('costa con acantilados', playa).
 respuesta_lugar('nadar en el mar', playa).
 respuesta_lugar('hacer snorkel', playa).
 respuesta_lugar('ir de fiesta', playa).
-
+respuesta_lugar('nadar en el mar', playa).
+respuesta_lugar('tomar el sol', playa).
+respuesta_lugar('surfear', playa).
+respuesta_lugar('hacer snorkel', playa).
+respuesta_lugar('relajarse en la playa', playa).
+respuesta_lugar('hacer castillos de arena', playa).
+respuesta_lugar('ir a la costa', playa).
+respuesta_lugar('disfrutar del atardecer', playa).
+respuesta_lugar('hacer un picnic', playa).
+respuesta_lugar('jugar a la pelota', playa).
+respuesta_lugar('pescar', playa).
+respuesta_lugar('practicar buceo', playa).
+respuesta_lugar('hacer yoga en la playa', playa).
+respuesta_lugar('pasear por la orilla', playa).
+respuesta_lugar('ir a un chiringuito', playa).
+respuesta_lugar('leer en la playa', playa).
+respuesta_lugar('hacer un barbacoa', playa).
+respuesta_lugar('nadar con delfines', playa).
+respuesta_lugar('ver a los surfers', playa).
+respuesta_lugar('caminar en la arena', playa).
+respuesta_lugar('ir de fiesta', playa).
+respuesta_lugar('despertar temprano', playa).
+respuesta_lugar('coleccionar conchas', playa).
+respuesta_lugar('disfrutar de un buen libro', playa).
+respuesta_lugar('hacer un tour en barco', playa).
+respuesta_lugar('ir a la playa con amigos', playa).
+respuesta_lugar('pasear en kayak', playa).
+respuesta_lugar('ver una película al aire libre', playa).
+respuesta_lugar('disfrutar de una bebida fría', playa).
+respuesta_lugar('hacer deporte en la playa', playa).
+respuesta_lugar('visitar el faro', playa).
+respuesta_lugar('hacer un paseo en velero', playa).
+respuesta_lugar('ir a la playa con la familia', playa).
+respuesta_lugar('probar mariscos', playa).
 
 respuesta_lugar('excursion en la selva', selva).
 respuesta_lugar('animales exoticos', selva).
