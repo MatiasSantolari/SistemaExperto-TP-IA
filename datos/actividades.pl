@@ -39,6 +39,16 @@ actividad(salta, trekking, 25).
 actividad(salta, visitas_historicas, 15).
 actividad(salta, rafting, 50).
 
+% Actividades en Aconquija
+actividad(aconquija, trekking, 25).
+actividad(aconquija, visitas_historicas, 12).
+actividad(aconquija, senderismo, 10).
+
+% Actividades en San Antonio de Areco
+actividad(san_antonio_de_areco, fiesta_de_la_tradicion, 2).
+actividad(san_antonio_de_areco, visitas_historicas, 10).
+actividad(san_antonio_de_areco, gastronomia, 10).
+
 % Actividades en Tucum�n
 actividad(tucuman, visita_historica, 10).
 actividad(tucuman, trekking, 20).
@@ -63,9 +73,9 @@ actividad(pinamar, paseos_en_bici, 20).
 actividad(pinamar, paseos_por_la_playa, 15).
 
 % Actividades en Carro Quevedo
-actividad(carro_quevedo, navegacion, 40).
-actividad(carro_quevedo, pesca_deportiva, 30).
-actividad(carro_quevedo, avistamiento_de_aves, 25).
+actividad(reta, navegacion, 40).
+actividad(reta, pesca_deportiva, 30).
+actividad(reta, avistamiento_de_aves, 25).
 
 % Actividades en Claromec�
 actividad(claromeco, paseos_por_la_playa, 20).

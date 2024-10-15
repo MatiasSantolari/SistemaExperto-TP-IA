@@ -14,16 +14,18 @@ destino(cafayate, montana, calido, media_concurrencia).
 destino(salta, montana, calido, alta_concurrencia).
 destino(tucuman, montana, calido, media_concurrencia).
 destino(cordoba, montana, calido, alta_concurrencia).
+destino(aconquija, montana, calido, baja_concurrencia).
 
 % Playa y calido
 destino(mar_del_plata, playa, calido, alta_concurrencia).
 destino(villa_gesell, playa, calido, media_concurrencia).
 destino(pinamar, playa, calido, media_concurrencia).
-destino(carro_quevedo, playa, calido, baja_concurrencia).
+destino(reta, playa, calido, baja_concurrencia).
 destino(claromeco, playa, calido, baja_concurrencia).
 destino(necochea, playa, calido, media_concurrencia).
 
 % Lugares rurales y templados
+destino(san_antonio_de_areco, rural, templado, alta_concurrencia).
 destino(tandil, rural, templado, media_concurrencia).
 destino(lujan, rural, templado, baja_concurrencia).
 destino(san_pedro, rural, templado, baja_concurrencia).

@@ -17,14 +17,16 @@ respuesta_clima('bajo cero', frio).
 respuesta_clima('gelido', frio).
 respuesta_clima('menos de 10 grados', frio).
 respuesta_clima('temperatura baja', frio).
-respuesta_clima('mayo', frio).
 respuesta_clima('junio', frio).
 respuesta_clima('julio', frio).
 respuesta_clima('agosto', frio).
+respuesta_clima('baja temperatura', frio).
+respuesta_clima('bajas temperatuas', frio).
 
 respuesta_clima('calor', calido).
 respuesta_clima('calido', calido).
 respuesta_clima('temperatura alta', calido).
+respuesta_clima('temperaturas altas', calido).
 respuesta_clima('calor extremo', calido).
 respuesta_clima('calor moderado', calido).
 respuesta_clima('calor intenso', calido).
@@ -67,6 +69,7 @@ respuesta_clima('septiembre', templado).
 respuesta_clima('octubre', templado).
 respuesta_clima('abril', templado).
 respuesta_clima('mayo', templado).
+respuesta_clima('ni frio ni calor', templado).
 
 
 

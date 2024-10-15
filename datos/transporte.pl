@@ -7,6 +7,10 @@ transporte(buenos_aires, avion, 20).
 transporte(buenos_aires, automovil, 12).
 transporte(buenos_aires, tren, 10).
 
+% Transporte a San Antonio de Areco
+transporte(san_antonio_de_areco, colectivo, 12).
+transporte(san_antonio_de_areco, automovil, 8).
+
 % Transporte a Mendoza
 transporte(mendoza, colectivo, 35).
 transporte(mendoza, avion, 45).
@@ -27,6 +31,10 @@ transporte(bariloche, automovil, 50).
 transporte(salta, avion, 40).
 transporte(salta, colectivo, 28).
 transporte(salta, automovil, 35).
+
+% Transporte a Aconquija
+transporte(aconquija, colectivo, 35).
+transporte(aconquija, automovil, 30).
 
 % Transporte a Iguazú
 transporte(iguazu, avion, 45).
@@ -112,10 +120,10 @@ transporte(merlo, colectivo, 25).
 transporte(merlo, avion, 35).
 transporte(merlo, automovil, 30).
 
-% Transporte a Carro Quevedo
-transporte(carro_quevedo, colectivo, 28).
-transporte(carro_quevedo, avion, 38).
-transporte(carro_quevedo, automovil, 32).
+% Transporte a Reta
+transporte(reta, colectivo, 28).
+transporte(reta, avion, 38).
+transporte(reta, automovil, 32).
 
 % Transporte a Misiones
 transporte(misiones, colectivo, 40).

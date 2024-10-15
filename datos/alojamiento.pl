@@ -57,6 +57,15 @@ alojamiento(salta,  hostal_santa_rosa, 20).
 alojamiento(salta,  hotel_primera_parada, 55).
 alojamiento(salta,  hotel_design_suites, 135).
 
+% Alojamiento en Aconquija
+alojamiento(aconquija,  hostal_plaza_maria, 20).
+alojamiento(aconquija,  hotel_aconquija, 25).
+
+% Alojamiento en San Antonio de Areco
+alojamiento(san_antonio_de_areco,  solar_del_pago, 22).
+alojamiento(san_antonio_de_areco,  rancho_areco, 18).
+alojamiento(san_antonio_de_areco,  estancia_el_ombu, 30).
+
 % Alojamiento en Tucumán
 alojamiento(tucuman,  hostal_san_javier, 25).
 alojamiento(tucuman,  hotel_piedra_verde, 55).
@@ -97,13 +106,13 @@ alojamiento(pinamar,  hostal_pinamar_sur, 30).
 alojamiento(pinamar,  hotel_arenas_doradas, 90).
 alojamiento(pinamar,  resort_costa_carilo, 220).
 
-% Alojamiento en Carro Quevedo
-alojamiento(carro_quevedo,  hostal_playa_dorada, 25).
-alojamiento(carro_quevedo,  hotel_alamos_verdes, 65).
-alojamiento(carro_quevedo,  resort_costa_linda, 140).
-alojamiento(carro_quevedo,  hostal_las_olas, 22).
-alojamiento(carro_quevedo,  hotel_vista_marina, 70).
-alojamiento(carro_quevedo,  resort_playa_azul, 160).
+% Alojamiento en Reta
+alojamiento(reta,  hostal_playa_dorada, 25).
+alojamiento(reta,  hotel_alamos_verdes, 65).
+alojamiento(reta,  resort_costa_linda, 140).
+alojamiento(reta,  hostal_las_olas, 22).
+alojamiento(reta,  hotel_vista_marina, 70).
+alojamiento(reta,  resort_playa_azul, 160).
 
 % Alojamiento en Claromecó
 alojamiento(claromeco,  hostal_rio_mar, 20).
