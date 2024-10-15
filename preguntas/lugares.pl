@@ -163,6 +163,34 @@ respuesta_lugar('picos altos', montana).
 respuesta_lugar('esquiar en la nieve', montana).
 respuesta_lugar('acampar en la montaña', montana).
 
+respuesta_lugar('pescar', campo).
+respuesta_lugar('caminar', campo).
+respuesta_lugar('explorar', campo).
+respuesta_lugar('observar', campo).
+respuesta_lugar('acampar', campo).
+respuesta_lugar('visitar', campo).
+respuesta_lugar('recorrer', campo).
+respuesta_lugar('disfrutar', campo).
+respuesta_lugar('comprar', campo).
+respuesta_lugar('apreciar', campo).
+respuesta_lugar('nadar', playa).
+respuesta_lugar('bucear', playa).
+respuesta_lugar('descansar', playa).
+respuesta_lugar('jugar', playa).
+respuesta_lugar('navegar', playa).
+respuesta_lugar('explorar', selva).
+respuesta_lugar('observar', selva).
+respuesta_lugar('caminar', selva).
+respuesta_lugar('navegar', selva).
+respuesta_lugar('fotografiar', selva).
+respuesta_lugar('escalar', montana).
+respuesta_lugar('trepar', montana).
+respuesta_lugar('caminar', montana).
+respuesta_lugar('aclimatar', montana).
+respuesta_lugar('descansar', montana).
+
+
+
 
 
 

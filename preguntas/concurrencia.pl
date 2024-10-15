@@ -17,8 +17,6 @@ respuesta_concurrencia('lugar solitario', baja_concurrencia).
 respuesta_concurrencia('pueblo pequeño', baja_concurrencia).
 respuesta_concurrencia('alojamiento en la montaña', baja_concurrencia).
 respuesta_concurrencia('alojamiento rural', baja_concurrencia).
-respuesta_concurrencia('festival rural', baja_concurrencia).
-respuesta_concurrencia('festival artesanal', baja_concurrencia).
 respuesta_concurrencia('campo', baja_concurrencia).
 
 respuesta_concurrencia('normal', media_concurrencia).
@@ -34,6 +32,11 @@ respuesta_concurrencia('aire libre', media_concurrencia).
 respuesta_concurrencia('mas o menos', media_concurrencia).
 respuesta_concurrencia('restaurantes', media_concurrencia).
 respuesta_concurrencia('restaurante', media_concurrencia).
+respuesta_concurrencia('festival rural', media_concurrencia).
+respuesta_concurrencia('festivales', media_concurrencia).
+respuesta_concurrencia('festival artesanal', media_concurrencia).
+respuesta_concurrencia('festivales artesanales', media_concurrencia).
+respuesta_concurrencia('festivales rurales', media_concurrencia).
 
 respuesta_concurrencia('turistico', alta_concurrencia).
 respuesta_concurrencia('ciudad', alta_concurrencia).
