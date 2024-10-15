@@ -162,6 +162,73 @@ respuesta_lugar('montañas nevadas', montana).
 respuesta_lugar('picos altos', montana).
 respuesta_lugar('esquiar en la nieve', montana).
 respuesta_lugar('acampar en la montaña', montana).
+respuesta_lugar('escalar', montana).
+respuesta_lugar('senderismo', montana).
+respuesta_lugar('aire fresco', montana).
+respuesta_lugar('paisajes impresionantes', montana).
+respuesta_lugar('refugio en la montana', montana).
+respuesta_lugar('tranquilidad', montana).
+respuesta_lugar('observacion de aves', montana).
+respuesta_lugar('rios y lagos', montana).
+respuesta_lugar('montana', montana).
+respuesta_lugar('senderos y montanas', montana).
+respuesta_lugar('tranquilo', montana).
+respuesta_lugar('ir a la montana', montana).
+respuesta_lugar('ir a escalar', montana).
+respuesta_lugar('escalar la montana', montana).
+respuesta_lugar('hacer senderismo en la montana', montana).
+respuesta_lugar('ir de paseo por la montana', montana).
+respuesta_lugar('caminar por la montana', montana).
+respuesta_lugar('hacer trekking', montana).
+respuesta_lugar('explorar la montana', montana).
+respuesta_lugar('disfrutar de la montana', montana).
+respuesta_lugar('acampar en la montana', montana).
+respuesta_lugar('pasar tiempo en la montana', montana).
+respuesta_lugar('ir a la montana', montana).
+respuesta_lugar('visitar la montana', montana).
+respuesta_lugar('ver el amanecer en la montana', montana).
+respuesta_lugar('hacer un picnic en la montana', montana).
+respuesta_lugar('navegar en los lagos de la montana', montana).
+respuesta_lugar('tomar fotos en la montana', montana).
+respuesta_lugar('disfrutar de la vista en la montana', montana).
+respuesta_lugar('relajarse en la montana', montana).
+respuesta_lugar('participar en deportes de invierno', montana).
+respuesta_lugar('esquiar', montana).
+respuesta_lugar('hacer snowboard', montana).
+respuesta_lugar('ir a un refugio en la montana', montana).
+respuesta_lugar('participar en un campamento de montana', montana).
+respuesta_lugar('ir a un festival en la montana', montana).
+respuesta_lugar('hacer avistamiento de aves en la montana', montana).
+respuesta_lugar('conectar con la naturaleza en la montana', montana).
+respuesta_lugar('participar en excursiones a la montana', montana).
+respuesta_lugar('practicar yoga en la montana', montana).
+respuesta_lugar('ir a un mirador', montana).
+respuesta_lugar('hacer fotografia de paisajes en la montana', montana).
+respuesta_lugar('explorar senderos en la montana', montana).
+respuesta_lugar('disfrutar de la fauna de la montana', montana).
+respuesta_lugar('vivir una aventura en la montana', montana).
+respuesta_lugar('recoger flores en la montana', montana).
+respuesta_lugar('descansar en la montana', montana).
+respuesta_lugar('hacer un tour en la montana', montana).
+respuesta_lugar('nadar en lagos de la montana', montana).
+respuesta_lugar('ir de excursion a la montana', montana).
+respuesta_lugar('hacer fogatas en la montana', montana).
+respuesta_lugar('montanismo', montana).
+respuesta_lugar('hacer una ruta en bicicleta en la montana', montana).
+respuesta_lugar('ir a ver cascadas en la montana', montana).
+respuesta_lugar('cazar en la montana', montana).
+respuesta_lugar('practicar escalada', montana).
+respuesta_lugar('rappel', montana).
+respuesta_lugar('explorar cuevas en la montana', montana).
+respuesta_lugar('senderismo', montana).
+respuesta_lugar('hacer un viaje de aventura a la montana', montana).
+respuesta_lugar('escalar', montana).
+respuesta_lugar('trecking', montana).
+respuesta_lugar('montanas nevadas', montana).
+respuesta_lugar('picos altos', montana).
+respuesta_lugar('esquiar en la nieve', montana).
+respuesta_lugar('acampar en la montana', montana).
+
 
 respuesta_lugar('pescar', campo).
 respuesta_lugar('caminar', campo).
